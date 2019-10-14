@@ -15,10 +15,12 @@ namespace WindowsFormsApp1
     {
         #region khai bao bien
         double giatri1 ;
+        double kq;
         string text = "";
         bool check = false;
         double value;
         int Opt = 0;
+        double numChange;
         public System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
         #endregion
 
@@ -53,27 +55,25 @@ namespace WindowsFormsApp1
             switch (Opt)
             {
                 case 1:
-                    txtKetQua.Text = (giatri1 + double.Parse(txtKetQua.Text)).ToString();
+                    kq = (giatri1 + double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    value = double.Parse(txtKetQua.Text);
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", value);
+                    
+                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
                     break;
                 case 2:
-                    txtKetQua.Text = (giatri1 - double.Parse(txtKetQua.Text)).ToString();
+                    kq = (giatri1 - double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    value = double.Parse(txtKetQua.Text);
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", value);
+                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
                     break;
                 case 3:
                     try
                     {
-                        txtKetQua.Text = (giatri1 * double.Parse(txtKetQua.Text)).ToString();
+                        kq = (giatri1 * double.Parse(txtKetQua.Text));
                         giatri1 = 0;
                         lblgiatri.Text = giatri1.ToString();
-                        value = double.Parse(txtKetQua.Text);
-                        txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", value);
+                        txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
                     }
                     catch
                     {
@@ -83,11 +83,10 @@ namespace WindowsFormsApp1
                 case 4:
                     if (txtKetQua.Text != "0")
                     {
-                        txtKetQua.Text = (giatri1 / double.Parse(txtKetQua.Text)).ToString();
+                        kq = (giatri1 / double.Parse(txtKetQua.Text));
                         giatri1 = 0;
                         lblgiatri.Text = giatri1.ToString();
-                        value = double.Parse(txtKetQua.Text);
-                        txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", value);
+                        txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
 
                     }
                     else
@@ -98,7 +97,7 @@ namespace WindowsFormsApp1
                     }
                     break;
             }
-            value.ToString();
+            kq.ToString();
         }
 
         private void btncong_Click(object sender, EventArgs e)
@@ -289,10 +288,10 @@ namespace WindowsFormsApp1
         private void btnClear_Click(object sender, EventArgs e)
         {
             giatri1 = 0;
-            txtKetQua.Text = "0";
+            txtKetQua.Clear();
+            txtKetQua.Text = giatri1.ToString();
             lblgiatri.Text = giatri1.ToString();
-            
-            check = false;
+            Opt = 0;
         }
         private void btnCE_Click(object sender, EventArgs e)
         {
@@ -305,12 +304,11 @@ namespace WindowsFormsApp1
 
         private void btnNegative_Click(object sender, EventArgs e)
         {
-            double numchange;
             if (txtKetQua.Text.Length != 0)
             {
-                numchange = double.Parse(txtKetQua.Text);
-                numchange *= -1;
-                txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", numchange).ToString();
+                numChange = double.Parse(txtKetQua.Text);
+                numChange *= -1;
+                txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", numChange).ToString();
             }
             btnbang.Select();
         }

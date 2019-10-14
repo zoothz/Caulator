@@ -164,10 +164,10 @@
             // txtKetQua
             // 
             this.txtKetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
-            this.txtKetQua.Location = new System.Drawing.Point(27, 80);
+            this.txtKetQua.Location = new System.Drawing.Point(36, 80);
             this.txtKetQua.MaxLength = 17;
             this.txtKetQua.Name = "txtKetQua";
-            this.txtKetQua.Size = new System.Drawing.Size(336, 38);
+            this.txtKetQua.Size = new System.Drawing.Size(318, 38);
             this.txtKetQua.TabIndex = 20;
             this.txtKetQua.Text = "0";
             this.txtKetQua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -329,7 +329,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 371);
+            this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.lbltemp);
             this.Controls.Add(this.btnbtnNegative);
             this.Controls.Add(this.btnBackspace);
@@ -354,6 +354,8 @@
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(400, 400);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "Form1";
             this.Text = "Caculator";
             this.ResumeLayout(false);
