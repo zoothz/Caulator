@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         double giatri1 ;
         double kq;
         string text = "";
-        bool check = false;
+        bool check;
         double value;
         int Opt = 0;
         double numChange;
@@ -34,11 +34,10 @@ namespace WindowsFormsApp1
         private void setOperator(int operation)
         {
 
-            if (giatri1 != 0)
+            if (giatri1 !=0||giatri1 >=0||giatri1 <=0)
             {
                 btnbang.PerformClick();
             }
-            lblgiatri.Text = "0";
             giatri1 = double.Parse(txtKetQua.Text);
             lblgiatri.Text = string.Format(culture, "{0:#,0.#####}", giatri1);
             txtKetQua.Text = "0";
@@ -51,14 +50,18 @@ namespace WindowsFormsApp1
 
         private void btnbang_Click(object sender, EventArgs e)
         {
-
+            ketqua();
+            
+        }
+        public void ketqua()
+        {
             switch (Opt)
             {
                 case 1:
                     kq = (giatri1 + double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    
+
                     txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
                     break;
                 case 2:
@@ -102,7 +105,6 @@ namespace WindowsFormsApp1
 
         private void btncong_Click(object sender, EventArgs e)
         {
-
             setOperator(1);
         }
         private void btnchia_Click(object sender, EventArgs e)
@@ -165,7 +167,6 @@ namespace WindowsFormsApp1
                     break;
                 case 8:
                     btnBackspace_Click(sender, e);
-
                     break;
                 case 27:
                     btnClear_Click(sender, e);
@@ -185,10 +186,7 @@ namespace WindowsFormsApp1
                 case 32:
                     btnCE_Click(sender, e);
                     break;
-
-                default:
-
-                    break;
+                    
             }
         }
 
@@ -197,14 +195,14 @@ namespace WindowsFormsApp1
         #region Number
         public void setText(string textset)
         {
-
+           if(txtKetQua.Text.Length == 0)
+            {
+                txtKetQua.Text += textset;
+            }
             if ((textset == ".") || (check))
             {
-                if (!txtKetQua.Text.Contains("."))
-                {
-                    txtKetQua.Text = txtKetQua.Text + textset;
-
-                }
+                txtKetQua.Text = txtKetQua.Text + textset;
+                check = false;
             }
             else if (txtKetQua.Text.Length < 17)
             {
