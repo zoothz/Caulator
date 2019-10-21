@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
             }
             giatri1 = double.Parse(txtKetQua.Text);
 
-            temp = string.Format(culture, "{0:#,0.#####}", giatri1);
+            temp = string.Format(culture, "{0:#,0.#########}", giatri1);
             lblgiatri.Text = temp;
             txtKetQua.Text = "0";
             check = false;
@@ -72,21 +72,21 @@ namespace WindowsFormsApp1
                     kq = (giatri1 + double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
+                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
                     kq.ToString();
                     break;
                 case 2:
                     kq = (giatri1 - double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
+                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
                     kq.ToString();
                     break;
                 case 3:
                     kq = (giatri1 * double.Parse(txtKetQua.Text));
                     giatri1 = 0;
                     lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
+                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
                     kq.ToString();
                     break;
                 case 4:
@@ -95,7 +95,7 @@ namespace WindowsFormsApp1
                         kq = (giatri1 / double.Parse(txtKetQua.Text));
                         giatri1 = 0;
                         lblgiatri.Text = giatri1.ToString();
-                        txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", kq);
+                        txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
                         kq.ToString();
                     }
                     else
@@ -202,10 +202,12 @@ namespace WindowsFormsApp1
         #region Number
         public void setText(string textset)
         {
-           if(txtKetQua.Text.Length == 0)
+           if((txtKetQua.Text ==" 0"))
             {
                 txtKetQua.Clear();
             }
+           
+
             if ((textset == ".") || (check))
             {
                 txtKetQua.Text += textset;
@@ -216,7 +218,7 @@ namespace WindowsFormsApp1
             {
                 txtKetQua.Text += textset;
                 value = double.Parse(txtKetQua.Text);
-                txtKetQua.Text = String.Format(culture, "{0:#,0.#####}", value);
+                txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
                 txtKetQua.Select(txtKetQua.Text.Length, 0);
             }
 
@@ -282,7 +284,7 @@ namespace WindowsFormsApp1
         #region Xoa
         private void btnBackspace_Click(object sender, EventArgs e)
         {
-            if (txtKetQua.Text.Length > 0)
+            if (txtKetQua.Text.Length != 0)
             {
                 if (txtKetQua.Text != "0")
                 {
@@ -320,7 +322,7 @@ namespace WindowsFormsApp1
             {
                 numChange = double.Parse(txtKetQua.Text);
                 numChange *= -1;
-                txtKetQua.Text = string.Format(culture, "{0:#,0.#####}", numChange).ToString();
+                txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", numChange).ToString();
             }
             btnbang.Select();
         }
