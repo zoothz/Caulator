@@ -171,6 +171,7 @@
             this.txtKetQua.TabIndex = 20;
             this.txtKetQua.Text = "0";
             this.txtKetQua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtKetQua.TextChanged += new System.EventHandler(this.txtKetQua_TextChanged);
             this.txtKetQua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKetQua_KeyPress);
             this.txtKetQua.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtKetQua_KeyUp);
             // 

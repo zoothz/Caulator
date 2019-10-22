@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         private string temp;
         double kq;
         string text = "";
-        bool check;
+        bool check = false;
         double value;
         int Opt = 0;
         double numChange;
@@ -39,11 +39,6 @@ namespace WindowsFormsApp1
             {
                 btnbang.PerformClick();
                
-            }
-            else if(giatri1 ==0)
-            {                
-                giatri1 = double.Parse(txtKetQua.Text);
-
             }
             giatri1 = double.Parse(txtKetQua.Text);
 
@@ -202,24 +197,26 @@ namespace WindowsFormsApp1
         #region Number
         public void setText(string textset)
         {
-           if((txtKetQua.Text ==" 0"))
+            if (txtKetQua.Text == "0")
             {
                 txtKetQua.Clear();
             }
-           
-
-            if ((textset == ".") || (check))
+            check = false;
+            if (textset == ".")
             {
-                txtKetQua.Text += textset;
-                check = true;
-
+                if (!txtKetQua.Text.Contains("."))
+                {
+                    txtKetQua.Text += textset;
+                    check = true;
+                }
             }
+            
             else if (txtKetQua.Text.Length < 17)
             {
                 txtKetQua.Text += textset;
                 value = double.Parse(txtKetQua.Text);
-                txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
-                txtKetQua.Select(txtKetQua.Text.Length, 0);
+                //txtKetQua.Select(txtKetQua.Text.Length, 0);
+               txtKetQua.Text = String.Format(culture, "{0:#,#.#########}", value);
             }
 
 
@@ -296,7 +293,7 @@ namespace WindowsFormsApp1
             {
                 txtKetQua.Text = "0";
             }
-            
+            btnBackspace.Select();
             
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -306,11 +303,13 @@ namespace WindowsFormsApp1
             txtKetQua.Text = giatri1.ToString();
             lblgiatri.Text = giatri1.ToString();
             Opt = 0;
+            btnClear.Select();
         }
         private void btnCE_Click(object sender, EventArgs e)
         {
+            txtKetQua.Clear();
             txtKetQua.Text = "0";
-            check = false;
+            btnCE.Select();
         }
         #endregion
 
@@ -337,31 +336,33 @@ namespace WindowsFormsApp1
                 e.Handled = true;
             }
             
-
-
         }
         
         private void txtKetQua_KeyUp(object sender, KeyEventArgs e)
         {
+            
             if (!string.IsNullOrEmpty(txtKetQua.Text))
-            {
-                
+            {                
                 try
                 {
                     value = Double.Parse(txtKetQua.Text);
-                    txtKetQua.Text = String.Format(culture, "{0:#,0.#####}", value);
+                    txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
                     txtKetQua.Select(txtKetQua.Text.Length, 0);
                 }
                 catch
                 {
-                    txtKetQua.Text = String.Format(culture, "{0:#,0.#####}", value);
+                    txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
                     txtKetQua.Select(txtKetQua.Text.Length, 0);
                 }
             }
         }
 
+
         #endregion
 
-        
+        private void txtKetQua_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
