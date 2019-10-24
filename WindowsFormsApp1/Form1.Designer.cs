@@ -49,7 +49,7 @@
             this.btnDot = new System.Windows.Forms.Button();
             this.btnCE = new System.Windows.Forms.Button();
             this.btnBackspace = new System.Windows.Forms.Button();
-            this.btnbtnNegative = new System.Windows.Forms.Button();
+            this.btnNegative = new System.Windows.Forms.Button();
             this.lbltemp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -306,17 +306,17 @@
             this.btnBackspace.Click += new System.EventHandler(this.btnBackspace_Click);
             this.btnBackspace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keycode);
             // 
-            // btnbtnNegative
+            // btnNegative
             // 
-            this.btnbtnNegative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnbtnNegative.Location = new System.Drawing.Point(118, 150);
-            this.btnbtnNegative.Name = "btnbtnNegative";
-            this.btnbtnNegative.Size = new System.Drawing.Size(75, 34);
-            this.btnbtnNegative.TabIndex = 21;
-            this.btnbtnNegative.Text = "+/-";
-            this.btnbtnNegative.UseVisualStyleBackColor = true;
-            this.btnbtnNegative.Click += new System.EventHandler(this.btnNegative_Click);
-            this.btnbtnNegative.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keycode);
+            this.btnNegative.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnNegative.Location = new System.Drawing.Point(118, 150);
+            this.btnNegative.Name = "btnNegative";
+            this.btnNegative.Size = new System.Drawing.Size(75, 34);
+            this.btnNegative.TabIndex = 21;
+            this.btnNegative.Text = "+/-";
+            this.btnNegative.UseVisualStyleBackColor = true;
+            this.btnNegative.Click += new System.EventHandler(this.btnNegative_Click);
+            this.btnNegative.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keycode);
             // 
             // lbltemp
             // 
@@ -332,7 +332,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.lbltemp);
-            this.Controls.Add(this.btnbtnNegative);
+            this.Controls.Add(this.btnNegative);
             this.Controls.Add(this.btnBackspace);
             this.Controls.Add(this.btnCE);
             this.Controls.Add(this.btnDot);
@@ -387,7 +387,7 @@
         private System.Windows.Forms.Button btnDot;
         private System.Windows.Forms.Button btnCE;
         private System.Windows.Forms.Button btnBackspace;
-        private System.Windows.Forms.Button btnbtnNegative;
+        private System.Windows.Forms.Button btnNegative;
         private System.Windows.Forms.Label lbltemp;
     }
 }

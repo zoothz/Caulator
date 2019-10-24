@@ -21,34 +21,48 @@ namespace WindowsFormsApp1
         bool check = false;
         double value;
         int Opt = 0;
-        double numChange;
         
         public System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
         #endregion
 
+        #region
+        public void DkZero()
+        {
+            txtKetQua.ReadOnly = false;
+            btncong.Enabled = true;
+            btntru.Enabled = true;
+            btnnhan.Enabled = true;
+            btnchia.Enabled = true;
+            btnbang.Enabled = true;
+            btnNegative.Enabled = true;
+            btnDot.Enabled = true;
+            txtKetQua.Clear();
+            lblgiatri.Text = "0";
+        }
+        #endregion
         public Form1()
         {
             InitializeComponent();
+
         }
         
 
         #region Tinh
         private void setOperator(int operation)
         {
-            if(giatri1 != 0 || giatri1 >= 0 || giatri1 < 0)
+            if(giatri1 != 0 || giatri1 >= 0 || giatri1 <= 0)
             {
                 btnbang.PerformClick();
                
             }
             giatri1 = double.Parse(txtKetQua.Text);
-
             temp = string.Format(culture, "{0:#,0.#########}", giatri1);
             lblgiatri.Text = temp;
             txtKetQua.Text = "0";
-            check = false;
 
             btnbang.Select();
 
+            check = false;
             Opt = operation;
             
         }
@@ -65,44 +79,44 @@ namespace WindowsFormsApp1
             {
                 case 1:
                     kq = (giatri1 + double.Parse(txtKetQua.Text));
-                    giatri1 = 0;
-                    lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
-                    kq.ToString();
+                    FormatKQ();
                     break;
                 case 2:
                     kq = (giatri1 - double.Parse(txtKetQua.Text));
-                    giatri1 = 0;
-                    lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
-                    kq.ToString();
+                    FormatKQ();
                     break;
                 case 3:
                     kq = (giatri1 * double.Parse(txtKetQua.Text));
-                    giatri1 = 0;
-                    lblgiatri.Text = giatri1.ToString();
-                    txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
-                    kq.ToString();
+                    FormatKQ();
                     break;
                 case 4:
                     if (txtKetQua.Text != "0")
                     {
                         kq = (giatri1 / double.Parse(txtKetQua.Text));
-                        giatri1 = 0;
-                        lblgiatri.Text = giatri1.ToString();
-                        txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
-                        kq.ToString();
+                        FormatKQ();                        
                     }
                     else
                     {
                         txtKetQua.Text = "Can't div zero";
-                        txtKetQua.Clear();
-                        txtKetQua.Text = "0";
-                       
+                        txtKetQua.ReadOnly = true;
+                        btncong.Enabled = false;
+                        btntru.Enabled = false;
+                        btnnhan.Enabled = false;
+                        btnchia.Enabled = false;
+                        btnbang.Enabled = false;
+                        btnNegative.Enabled = false;
+                        btnDot.Enabled = false;
                     }
                     break;
             }
             Opt = 0;
+        }
+        public void FormatKQ()
+        {
+            giatri1 = 0;
+            lblgiatri.Text = giatri1.ToString();
+            txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", kq);
+            kq.ToString();
         }
 
         private void btncong_Click(object sender, EventArgs e)
@@ -197,6 +211,11 @@ namespace WindowsFormsApp1
         #region Number
         public void setText(string textset)
         {
+            if(txtKetQua.Text == "Can't div zero")
+            {
+                DkZero();
+                
+            }
             if (txtKetQua.Text == "0")
             {
                 txtKetQua.Clear();
@@ -207,19 +226,28 @@ namespace WindowsFormsApp1
                 if (!txtKetQua.Text.Contains("."))
                 {
                     txtKetQua.Text += textset;
-                    check = true;
                 }
+                
             }
             
             else if (txtKetQua.Text.Length < 17)
             {
                 txtKetQua.Text += textset;
-                value = double.Parse(txtKetQua.Text);
-                //txtKetQua.Select(txtKetQua.Text.Length, 0);
-               txtKetQua.Text = String.Format(culture, "{0:#,#.#########}", value);
             }
+            
+            
+            btnbang.Select();
+        }
 
-
+        public void FormatText()
+        {
+           
+            if(txtKetQua.Text != null)
+            {
+                value = double.Parse( txtKetQua.Text);
+                txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
+                txtKetQua.Text.ToString();
+            }
         }
         private void btn8_Click(object sender, EventArgs e)
         {
@@ -281,6 +309,12 @@ namespace WindowsFormsApp1
         #region Xoa
         private void btnBackspace_Click(object sender, EventArgs e)
         {
+            if(txtKetQua.Text == "Can't div zero")
+            {
+                DkZero();
+                lblgiatri.Text = "0";
+                txtKetQua.Text = "0";
+            }
             if (txtKetQua.Text.Length != 0)
             {
                 if (txtKetQua.Text != "0")
@@ -293,6 +327,8 @@ namespace WindowsFormsApp1
             {
                 txtKetQua.Text = "0";
             }
+
+            
             btnBackspace.Select();
             
         }
@@ -303,12 +339,18 @@ namespace WindowsFormsApp1
             txtKetQua.Text = giatri1.ToString();
             lblgiatri.Text = giatri1.ToString();
             Opt = 0;
+            DkZero();
             btnClear.Select();
         }
         private void btnCE_Click(object sender, EventArgs e)
         {
+            if(txtKetQua.Text == "Can't div zero")
+            {
+                DkZero();
+            }
             txtKetQua.Clear();
             txtKetQua.Text = "0";
+            DkZero();
             btnCE.Select();
         }
         #endregion
@@ -319,9 +361,9 @@ namespace WindowsFormsApp1
         {
             if (txtKetQua.Text.Length != 0)
             {
-                numChange = double.Parse(txtKetQua.Text);
-                numChange *= -1;
-                txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", numChange).ToString();
+                value = double.Parse(txtKetQua.Text);
+                value *= -1;
+                txtKetQua.Text = string.Format(culture, "{0:#,0.#########}", value).ToString();
             }
             btnbang.Select();
         }
