@@ -25,7 +25,17 @@ namespace WindowsFormsApp1
         public System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
         #endregion
 
-        #region
+        #region cac ham tao
+        public void FormatText()
+        {
+
+            if (txtKetQua.Text != null)
+            {
+                value = double.Parse(txtKetQua.Text);
+                txtKetQua.Text = String.Format(culture, "{0:#,##0.#########}", value);
+                txtKetQua.Text.ToString();
+            }
+        }
         public void DkZero()
         {
             txtKetQua.ReadOnly = false;
@@ -213,42 +223,34 @@ namespace WindowsFormsApp1
         {
             if(txtKetQua.Text == "Can't div zero")
             {
-                DkZero();
-                
+                DkZero();                
             }
+
             if (txtKetQua.Text == "0")
             {
                 txtKetQua.Clear();
             }
+
             check = false;
+
             if (textset == ".")
             {
                 if (!txtKetQua.Text.Contains("."))
                 {
-                    txtKetQua.Text += textset;
-                }
-                
+                    txtKetQua.Text = txtKetQua.Text +  textset;
+                }                
             }
             
             else if (txtKetQua.Text.Length < 17)
             {
                 txtKetQua.Text += textset;
-            }
-            
+                FormatText();
+            }            
             
             btnbang.Select();
         }
 
-        public void FormatText()
-        {
-           
-            if(txtKetQua.Text != null)
-            {
-                value = double.Parse( txtKetQua.Text);
-                txtKetQua.Text = String.Format(culture, "{0:#,0.#########}", value);
-                txtKetQua.Text.ToString();
-            }
-        }
+       
         private void btn8_Click(object sender, EventArgs e)
         {
             setText("8");
@@ -315,7 +317,8 @@ namespace WindowsFormsApp1
                 lblgiatri.Text = "0";
                 txtKetQua.Text = "0";
             }
-            if (txtKetQua.Text.Length != 0)
+
+            else if (txtKetQua.Text.Length != 0)
             {
                 if (txtKetQua.Text != "0")
                 {
@@ -323,6 +326,7 @@ namespace WindowsFormsApp1
                 }
                
             }
+
             else
             {
                 txtKetQua.Text = "0";
