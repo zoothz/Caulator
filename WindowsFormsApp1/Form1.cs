@@ -244,7 +244,7 @@ namespace WindowsFormsApp1
             else if (txtKetQua.Text.Length < 17)
             {
                 txtKetQua.Text += textset;
-                FormatText();
+                //FormatText();
             }            
             
             btnbang.Select();
